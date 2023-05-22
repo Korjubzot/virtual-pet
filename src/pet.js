@@ -32,9 +32,14 @@ Pet.prototype = {
     }
   };
 
-Pet.prototype.adoptChild = function(child) {
-    this.children.push(child);
-    return this.children;
+// Pet.prototype.adoptChild = function(child) {
+//     this.children.push(child);
+//     return this.children;
+// }
+
+Pet.prototype.haveBaby = function(child) {
+    baby = new Pet(child);
+    this.children.push(baby);
 }
 
 
