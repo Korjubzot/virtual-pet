@@ -140,15 +140,6 @@ describe('isAlive', () => {
     })
 });
 
-// describe('adoptChild', () => {
-//   it('returns array with child Rex', () => {
-//     const parent = new Pet('Fido');
-//     const child = new Pet('Rex');
-//     parent.adoptChild(child);
-
-//     expect(parent.children[0].name).toEqual('Rex');
-//   })
-
 describe('haveBaby', () => {
   it('returns array with child Amelia', () => {
     const parent = new Pet('Rory');
