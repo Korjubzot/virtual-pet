@@ -2,11 +2,16 @@
 
 Virtual Pet is a JavaScript based game that works like Tamagotchi. Feed your pet, walk it, care for it, love it <3.
 
+Built by Billy Walker for the Command Shift March 2023 cohort.
+
 ## Installation
 
 Fork and clone the Virtual Pet repository to your local machine. Run npm install to download any dependencies.
 
-In Node REPL, run the following commands to spawn a new pet.
+In Node REPL, run the following commands to spawn a new pet: 
+
+    const Pet = require('./src/pet.js')
+    pet = new Pet('PetNameHere')
 
 ## Usage
 
@@ -18,15 +23,17 @@ If your pet gets too old (age 30) it will DIE.
 
 ### Commands
 
-growUp() ages your pet 1, adds 5 hunger, and reduces their fitness by 3.
+`pet` gives you your pets stats: name, age, hunger, fitness, and any children.
 
-walk() improves fitness by 4 points, to a maximum of 10.
+`pet.growUp()` ages your pet 1, adds 5 hunger, and reduces their fitness by 3.
 
-feed() reduces hunger by 3, to a minimum of 0.
+`pet.walk()` improves fitness by 4 points, to a maximum of 10.
 
-checkUp() tells you if your pet is hungry, restless, both, or none!
+`pet.feed()` reduces hunger by 3, to a minimum of 0.
 
-adoptChild() lets your pet adopt a new baby. The circle of life really is wonderful.
+`pet.checkUp()` tells you if your pet is hungry, restless, both, or none!
+
+`pet.adoptChild()` lets your pet adopt a new baby. The circle of life really is wonderful.
 
 ## Contributing
 
