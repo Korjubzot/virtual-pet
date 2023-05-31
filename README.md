@@ -8,7 +8,7 @@ Built by Billy Walker for the Command Shift March 2023 cohort.
 
 Fork and clone the Virtual Pet repository to your local machine. Run npm install to download any dependencies.
 
-In Node REPL, run the following commands to spawn a new pet: 
+In Node REPL, run the following commands to spawn a new pet:
 
     const Pet = require('./src/pet.js')
     pet = new Pet('PetNameHere')

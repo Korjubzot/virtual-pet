@@ -1,34 +1,25 @@
-// Sets a maximum number for fitness
-const maxFitness = 10;
-// Amount that fitness raises by when walk function is called
-const fitnessIncrement = 4;
-
-// Sets a minimum number for hunger
-const minHunger = 0;
-// Amount that hunger lowers by when growUp function is called
-const hungerIncrement = 3;
-
-// Thresholds to trigger feeding or fitness alerts
-const hungerThreshold = 5;
+const MAX_FITNESS = 10;
+const FITNESS_INCREMENT = 4;
+const MIN_HUNGER = 0;
+const HUNGER_INCREMENT = 3;
+const HUNGER_THRESHOLD = 5;
 const fitnessThreshold = 3;
-
-// Death thresholds for isAlive function
-const maxAge = 30;
-const maxHunger = 10;
+const MAX_AGE = 30;
+const MAX_HUNGER = 10;
 
 // Pet prototype
 function Pet(name) {
   this.name = name;
   this.age = 0;
-  this.hunger = 0;
-  this.fitness = 10;
+  this.hunger = MIN_HUNGER;
+  this.fitness = MAX_FITNESS;
   this.children = [];
 }
 
 // Checks if pet is alive
 Pet.prototype = {
   get isAlive() {
-    return this.age < maxAge && this.hunger < maxHunger && this.fitness > 0;
+    return this.age < MAX_AGE && this.hunger < MAX_HUNGER && this.fitness > 0;
   },
 };
 
@@ -42,29 +33,23 @@ Pet.prototype.growUp = function () {
     throw new Error("Your pet is no longer alive :(");
   } else {
     this.age += 1;
-    this.hunger += 5;
-    this.fitness -= 3;
+    this.hunger += HUNGER_INCREMENT;
+    this.fitness -= FITNESS_INCREMENT;
   }
 };
 
 Pet.prototype.walk = function () {
   if (!this.isAlive) {
     throw new Error("Your pet is no longer alive :(");
-  } else if (this.fitness + fitnessIncrement <= maxFitness) {
-    this.fitness += fitnessIncrement;
-  } else {
-    this.fitness = maxFitness;
   }
+  this.fitness = Math.min(this.fitness + FITNESS_INCREMENT, MAX_FITNESS);
 };
 
 Pet.prototype.feed = function () {
   if (!this.isAlive) {
     throw new Error("Your pet is no longer alive :(");
-  } else if (this.hunger - hungerIncrement >= minHunger) {
-    this.hunger -= hungerIncrement;
-  } else {
-    this.hunger = minHunger;
   }
+  this.hunger = Math.max(this.hunger - HUNGER_INCREMENT, MIN_HUNGER);
 };
 
 Pet.prototype.checkUp = function () {
@@ -72,12 +57,12 @@ Pet.prototype.checkUp = function () {
     return "Your pet is no longer alive :(";
   } else if (
     this.fitness <= fitnessThreshold &&
-    this.hunger >= hungerThreshold
+    this.hunger >= HUNGER_THRESHOLD
   ) {
     return "I am hungry AND I need a walk";
   } else if (this.fitness <= fitnessThreshold) {
     return "I need a walk";
-  } else if (this.hunger >= hungerThreshold) {
+  } else if (this.hunger >= HUNGER_THRESHOLD) {
     return "I am hungry";
   } else {
     return "I feel great!";
